@@ -1,10 +1,10 @@
 
-### 📡 **StreamNet: Mongo & File Share**  
+### 📡 **Mongo & File Sharing**  
 This documentation provides a guide to set up and run a Streamlit application that interacts with a MongoDB database.
 
 
 ## 📝 **Purpose**  
-The **StreamNet** is a simple web-based tool that enables users to:  
+The **Mongo & File Sharing** is a simple web-based tool that enables users to:  
 
 1. **View their local network IP** for easy access on multiple devices.  
 2. **Retrieve and manage documents** stored in a MongoDB collection.  
@@ -91,4 +91,4 @@ streamlit run app.py --server.address $(hostname -I | awk '{print $1}') --server
 
 ---
 
-Enjoy using **StreamNet**! 😊
+Enjoy using this App! 😊
