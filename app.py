@@ -3,7 +3,7 @@ import streamlit as st
 import socket
 import uuid
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, request, send_from_directory
 import threading
 
 def get_local_ip():
@@ -59,10 +59,16 @@ local_ip = get_local_ip()
 # Flask app to serve files
 app = Flask(__name__)
 
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory("uploads", filename, as_attachment=True)
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")  # Ensure absolute path
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Create if not exists
 
+@app.route('/uploads/<path:filename>', methods=['GET'])
+def uploaded_file(filename):
+    try:
+        return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
+    except Exception as e:
+        return f"Error: {e}", 404  # Return detailed error message
+    
 def run_flask():
     app.run(host="0.0.0.0", port=8502, threaded=True)
 
